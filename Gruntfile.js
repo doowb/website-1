@@ -263,28 +263,10 @@ module.exports = function (grunt) {
                 }]
             }
         },
-        cssmin: {
-            // This task is pre-configured if you do not wish to use Usemin
-            // blocks for your CSS. By default, the Usemin block from your
-            // `index.html` will take care of minification, e.g.
-            //
-            //     <!-- build:css({.tmp,app}) styles/main.css -->
-            //
-            // dist: {
-            //     files: {
-            //         '<%= yeoman.dist %>/styles/main.css': [
-            //             '.tmp/styles/{,*/}*.css',
-            //             '<%= yeoman.app %>/styles/{,*/}*.css'
-            //         ]
-            //     }
-            // }
-        },
         htmlmin: {
             dist: {
                 options: {
                     removeCommentsFromCDATA: true,
-                    // https://github.com/yeoman/grunt-usemin/issues/44
-                    // collapseWhitespace: true,
                     collapseBooleanAttributes: true,
                     removeAttributeQuotes: false,
                     removeRedundantAttributes: true,
@@ -383,7 +365,7 @@ module.exports = function (grunt) {
             options: {
                 flatten: true,
                 layout: '<%= yeoman.app %>/templates/layouts/default.hbs',
-                partials: ['<%= yeoman.app %>/templates/partials/*.hbs'],
+                partials: ['<%= yeoman.app %>/templates/partials/*.hbs']
             },
             pages: {
                 files: {
@@ -392,9 +374,17 @@ module.exports = function (grunt) {
             },
             index: {
                 files: {
-                    '<%= yeoman.app %>/': ['<%= yeoman.app %>/templates/pages/index.hbs']
+                    '<%= yeoman.app %>/': ['<%= yeoman.app %>/templates/pages/*.hbs']
                 }
-            }
+            },
+            blog: {
+                options: {
+                    collections: [{name: 'posts'}]
+                },
+                files: {
+                    '<%= yeoman.app %>/blog': ['<%= yeoman.app %>/templates/blog/posts/*.hbs']
+                }
+            },
         },
         bower: {
             options: {
